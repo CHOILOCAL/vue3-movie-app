@@ -1,1 +1,22 @@
+$primary: #FDC000;
+// 아래 variableds가 선언되기 전에 $primary가 정의 되어주어야 함
+
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+// 모든 컬러를 지정해주면 굳이 _variables 아래에 둘 필요가 없음 !default
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  red,
+  "success":    blue,
+  "info":       white,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+
+// 기본 스타일
 @import "../../node_modules/bootstrap/scss/bootstrap";
