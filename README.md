@@ -1,6 +1,8 @@
-# Vue3 템플릿 with Webpack
+# Vue3 OMDb API
 
+last updated, 22. 03. 25, author, choilocal<br/>
 ## Versions
+- node version : 16.14.2
 
 - [Default](https://github.com/ParkYoungWoong/vue3-webpack-template/tree/master)<br>
 - [+ESLint](https://github.com/ParkYoungWoong/vue3-webpack-template/tree/eslint)<br>
