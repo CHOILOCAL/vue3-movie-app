@@ -15671,7 +15671,7 @@
     "@vue/server-renderer" "3.2.31"
     "@vue/shared" "3.2.31"
 
-"vuex@^4.0.0":
+"vuex@^4.0.2":
   "integrity" "sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q=="
   "resolved" "https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz"
   "version" "4.0.2"
