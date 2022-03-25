@@ -1,6 +1,6 @@
 <template>
     <RouterLint to="/" class="logo">
-OMDbAPI.COM
+LOTTECARD.CO.KR
     </RouterLint>
 </template>
 
