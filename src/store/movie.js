@@ -24,7 +24,8 @@ export default {
     },
     actions: {
         async searchMovies({state, commit}, payload) {
-            // const { title, type, year, number } = payload
+            try {
+                // const { title, type, year, number } = payload
             const OMDB_API_KEY = '7035c60c'
             // const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}$page=1`)
             // TODO: 변경 (비동기)
@@ -55,7 +56,14 @@ export default {
                     })
                 }
             }
-
+            } catch (err) {
+                commit('updateState', {
+                    movies: [],
+                    message: err
+                })
+            } finally {
+                console.log('Done')
+            }
         }
     },
 }
