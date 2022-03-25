@@ -64,11 +64,16 @@ export default {
 function _fetchMovie(payload) {
     const { title, type, year, page } = payload
     const OMDB_API_KEY = '7035c60c'
-    const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}$page=${page}`
+    // const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}$page=${page}`
+    const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`
 
     return new Promise((resolve, reject) => {
         axios.get(url)
             .then(res => {
+                console.log(res)
+                if (res.data.Error) {
+                    reject(res.data.Error)
+                }
                 resolve(res)
             }).catch((err) => {
             reject(err.message)
