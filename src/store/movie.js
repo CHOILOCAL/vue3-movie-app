@@ -5,8 +5,9 @@ export default {
     namespaced: true,
     state: () => ({
         movies: [],
-        message: '',
-        loading: false
+        message: 'Search for the movie title!',
+        loading: false,
+        theMovie: {}
     }),
     mutations: {
         updateState(state, payload) {
@@ -23,10 +24,19 @@ export default {
         }
     },
     actions: {
-        async searchMovies({state, commit}, payload) {
+        async searchMovies({ state, commit }, payload) {
+
+            // TODO: 사용자가 여러번 try 하는 경우
+            if (state.loading) return
+
+            commit('updateState', {
+                message: '',
+                loading: true,
+            })
+
             try {
                 // const { title, type, year, number } = payload
-            const OMDB_API_KEY = '7035c60c'
+            // const OMDB_API_KEY = '7035c60c'
             // const res = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}$page=1`)
             // TODO: 변경 (비동기)
             const res = await _fetchMovie({
@@ -52,7 +62,7 @@ export default {
                     })
                     const { Search } = res.data
                     commit('updateState', {
-                        movies: [...state.movies, ... _uniqBy(Search, 'imdbID')]
+                        movies: [...state.movies, ..._uniqBy(Search, 'imdbID')]
                     })
                 }
             }
@@ -62,19 +72,42 @@ export default {
                     message: err
                 })
             } finally {
-                console.log('Done')
+                commit('updateState', {
+                    loading: false
+                })
+            }
+        },
+        async searchMovieWithId({ state, commit }, payload) {
+            if (state.loading) return 
+
+            commit('updateState', {
+                theMovie: {},
+                loading: true
+            })
+
+            try {
+                const res = await _fetchMovie(payload)
+                commit('updateState', {
+                    theMovie: res.data
+                })
+            } catch (e) {
+                commit('updateState', {
+                    theMovie: {}
+                })
+            } finally {
+                commit('updateState', {
+                    loading: false
+                })
             }
         }
     },
-}
+} 
 
 // '_' 현재 파일에서만 사용
 function _fetchMovie(payload) {
-    const { title, type, year, page } = payload
+    const { title, type, year, page, id } = payload
     const OMDB_API_KEY = '7035c60c'
-    const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}$page=${page}`
-    // TODO: Error 일 경우
-    // const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`
+    const url = id ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}$page=${page}`
 
     return new Promise((resolve, reject) => {
         axios.get(url)

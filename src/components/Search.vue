@@ -1,20 +1,35 @@
 <template>
-<div class="container">
-<input
+  <div class="container">
+    <input
       v-model="title"
       class="form-control"
       type="text"
-      placeholder="Search for Movies, Series & more" @keyup.enter="apply" />
-      <div class="selects">
-          <select v-for="filter in filters" v-model="$data[filter.name]" :key="filter.name" class="form-select">
-              <option v-if="filter.name === 'year'" value="">All Years</option>
-              <option v-for="item in filter.items" :key="item">{{ item }}</option>
-          </select>
-          <button class="btn btn-primary" @click="apply">
-              Apply
-          </button>
-      </div>
-</div>
+      placeholder="Search for Movies, Series & more"
+      @keyup.enter="apply" />
+    <div class="selects">
+      <select
+        v-for="filter in filters"
+        v-model="$data[filter.name]"
+        :key="filter.name"
+        class="form-select">
+        <option
+          v-if="filter.name === 'year'"
+          value="">
+          All Years
+        </option>
+        <option
+          v-for="item in filter.items"
+          :key="item">
+          {{ item }}
+        </option>
+      </select>
+    </div>
+    <button
+      class="btn btn-primary"
+      @click="apply">
+      Apply
+    </button>
+  </div>
 </template>
 
 <script>
@@ -63,29 +78,46 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+  display: flex;
+  > * {
+    margin-right: 10px;
+    font-size: 15px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .selects {
     display: flex;
-    > * {
-        margin-right: 10px;
-        font-size: 15px;
-        &:last-child {
-            margin-right: 0;
-        }
+    select {
+      width: 120px;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  .btn {
+    width: 120px;
+    height: 50px;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  @include media-breakpoint-down(lg) {
+    display: block;
+    input {
+      margin-right: 0;
+      margin-bottom: 10px;
     }
     .selects {
-        display: flex;
-        select {
-            width: 12px;
-            margin-right: 10px;
-            &:last-child {
-                margin-right: 0;
-            }
-        }
+      margin-right: 0;
+      margin-bottom: 10px;
+      select {
+        width: 100%;
+      }
     }
     .btn {
-        width: 120px;
-        height: 50px;
-        font-weight: 700;
-        flex-shrink: 0;
+      width: 100%;
     }
+  }
 }
 </style>

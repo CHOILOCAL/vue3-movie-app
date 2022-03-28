@@ -1,5 +1,12 @@
 $primary: #FDC000;
 // 아래 variableds가 선언되기 전에 $primary가 정의 되어주어야 함
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px
+);
 
 // Required
 @import "../../node_modules/bootstrap/scss/functions";

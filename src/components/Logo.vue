@@ -1,7 +1,9 @@
 <template>
-    <RouterLint to="/" class="logo">
-LOTTECARD.CO.KR
-    </RouterLint>
+  <RouterLink
+    to="/"
+    class="logo">
+    <span>OMDbAPI</span>.COM
+  </RouterLink>
 </template>
 
 <style lang="scss" scoped>
