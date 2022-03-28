@@ -1,5 +1,4 @@
-<template>
-  <Headline />
+<template><Headline />
   <Search />
   <MovieList />
 </template>
